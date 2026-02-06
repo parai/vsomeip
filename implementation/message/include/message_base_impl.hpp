@@ -13,7 +13,7 @@
 
 namespace vsomeip_v3 {
 
-class message_base_impl : virtual public message_base {
+class VSOMEIP_IMPORT_EXPORT message_base_impl : virtual public message_base {
 public:
     VSOMEIP_EXPORT message_base_impl();
     VSOMEIP_EXPORT virtual ~message_base_impl();

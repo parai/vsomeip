@@ -20,7 +20,7 @@ using on_unicast_sent_cbk_t = std::function<void(const byte_t*, length_t, const 
 // callback type to own multicast messages received
 using on_sent_multicast_received_cbk_t = std::function<void(const byte_t*, length_t, const boost::asio::ip::address&)>;
 
-class udp_server_endpoint_impl : public udp_server_endpoint_base_impl {
+class VSOMEIP_IMPORT_EXPORT udp_server_endpoint_impl : public udp_server_endpoint_base_impl {
 
 public:
     udp_server_endpoint_impl() = delete;
@@ -66,9 +66,9 @@ public:
     void set_sent_multicast_received_callback(const on_sent_multicast_received_cbk_t& _cbk);
     void set_receive_own_multicast_messages(bool value);
 
-    bool is_joining() const;
-    bool is_joined(const std::string& _address) const;
-    bool is_joined(const std::string& _address, bool& _received) const;
+    VSOMEIP_EXPORT bool is_joining() const;
+    VSOMEIP_EXPORT bool is_joined(const std::string& _address) const;
+    VSOMEIP_EXPORT bool is_joined(const std::string& _address, bool& _received) const;
 
     /// @brief Disconnects from the given client.
     ///

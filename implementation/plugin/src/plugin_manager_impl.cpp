@@ -10,9 +10,7 @@
 #include <iostream>
 
 #ifdef _WIN32
-#ifndef _WINSOCKAPI_
 #include <Windows.h>
-#endif
 #else
 #include <dlfcn.h>
 #endif
@@ -121,7 +119,7 @@ void* plugin_manager_impl::load_symbol(void* _handle, const std::string& _symbol
     void* symbol = nullptr;
     if (_handle) {
 #ifdef _WIN32
-        symbol = GetProcAddress(reinterpret_cast<HMODULE>(_handle), _symbol_name.c_str());
+        symbol = (void*)GetProcAddress(reinterpret_cast<HMODULE>(_handle), _symbol_name.c_str());
 #else
         symbol = dlsym(_handle, _symbol_name.c_str());
 #endif

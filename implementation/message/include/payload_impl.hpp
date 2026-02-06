@@ -18,7 +18,7 @@ namespace vsomeip_v3 {
 class serializer;
 class deserializer;
 
-class payload_impl : public payload {
+class VSOMEIP_IMPORT_EXPORT payload_impl : public payload {
 public:
     VSOMEIP_EXPORT payload_impl();
     VSOMEIP_EXPORT payload_impl(const byte_t* _data, uint32_t _size);
