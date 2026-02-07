@@ -35,14 +35,14 @@ void config_command::serialize(std::vector<byte_t>& _buffer, error_e& _error) co
         std::memcpy(&_buffer[write_position], &key_size, sizeof(std::uint32_t));
         write_position += sizeof(std::uint32_t);
 
-        std::memcpy(&_buffer[write_position], key.data(), key.length());
+        std::memcpy(&_buffer[write_position], key.data(), key.size());
         write_position += key_size;
 
         auto value_size = static_cast<std::uint32_t>(value.size());
         std::memcpy(&_buffer[write_position], &value_size, sizeof(std::uint32_t));
         write_position += sizeof(std::uint32_t);
 
-        std::memcpy(&_buffer[write_position], value.data(), value.length());
+        std::memcpy(&_buffer[write_position], value.data(), value.size());
         write_position += value_size;
     }
     _error = error_e::ERROR_OK;

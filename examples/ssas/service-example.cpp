@@ -7,16 +7,12 @@
 
 using namespace vsomeip_v3;
 
-#define SAMPLE_SERVICE_ID 0xabcd
-#define SAMPLE_INSTANCE_ID 0xbeef
-#define SAMPLE_METHOD_ID 0x0424
+#define SAMPLE_SERVICE_ID 0x1001
+#define SAMPLE_INSTANCE_ID 0x1001
+#define SAMPLE_METHOD_ID 0x1001
 
-// #define SAMPLE_SERVICE_ID 0x1234
-// #define SAMPLE_INSTANCE_ID 0x5678
-// #define SAMPLE_METHOD_ID 0x0421
-
-#define SAMPLE_EVENTGROUP_ID 0x8002
-#define SAMPLE_EVENT_ID 0xabcd
+#define SAMPLE_EVENTGROUP_ID 0x8001
+#define SAMPLE_EVENT_ID 0x8001
 
 std::shared_ptr<vsomeip::application> app;
 

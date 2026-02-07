@@ -4,7 +4,7 @@
     {
         "level" : "debug",
         "console" : "true",
-        "file" : { "enable" : "false", "path" : "/var/log/vsomeip.log" },
+        "file" : { "enable" : "false", "path" : "./vsomeip.log" },
         "dlt" : "false"
     },
     "applications" : 
@@ -21,17 +21,17 @@
     "services" :
     [
         {
-            "service" : "0x1234",
-            "instance" : "0x5678",
+            "service" : "0x1000",
+            "instance" : "0x1000",
             "unreliable" : "30560"
         },
         {
-            "service" : "0xabcd",
-            "instance" : "0xbeef",
+            "service" : "0x1001",
+            "instance" : "0x1001",
             "unreliable" : "30568"
         }
     ],
-    "routing" : "hello_world_service",
+    "routing" : "hello_world_client",
     "service-discovery" :
     {
         "enable" : "true",

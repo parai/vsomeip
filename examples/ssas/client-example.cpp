@@ -7,13 +7,12 @@
 
 #include <vsomeip/vsomeip.hpp>
 
-#define SAMPLE_SERVICE_ID 0x1234
-#define SAMPLE_INSTANCE_ID 0x5678
-#define SAMPLE_METHOD_ID 0x0421
+#define SAMPLE_SERVICE_ID 0x1000
+#define SAMPLE_INSTANCE_ID 0x1000
+#define SAMPLE_METHOD_ID 0x1000
 
-#define SAMPLE_EVENTGROUP_ID 0x8001
-#define SAMPLE_EVENT_ID 0xabcd
-// #define SAMPLE_EVENT_ID 0xbeef
+#define SAMPLE_EVENTGROUP_ID 0x8000
+#define SAMPLE_EVENT_ID 0x8000
 
 std::shared_ptr< vsomeip::application > app;
 std::mutex mutex;
@@ -38,7 +37,7 @@ void run() {
 
     std::shared_ptr< vsomeip::payload > its_payload = vsomeip::runtime::get()->create_payload();
     std::vector< vsomeip::byte_t > its_payload_data;
-    for (vsomeip::byte_t i=0; i<5000; i++) {
+    for (int i=0; i<5000; i++) {
         its_payload_data.push_back(i % 256);
     }
     its_payload->set_data(its_payload_data);
@@ -82,7 +81,7 @@ int main() {
     app->init();
     app->register_availability_handler(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID, on_availability);
     app->request_service(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID);
-    //app->register_message_handler(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID, SAMPLE_METHOD_ID, on_message);
+    app->register_message_handler(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID, SAMPLE_METHOD_ID, on_message);
     app->register_message_handler(vsomeip::ANY_SERVICE, vsomeip::ANY_INSTANCE, vsomeip::ANY_METHOD, on_message);
     std::thread sender(run);
     app->start();

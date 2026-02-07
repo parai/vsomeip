@@ -175,7 +175,7 @@ int main(int argc, char** argv) {
             }
         }
     }
-
+#ifndef _WIN32
     /* Fork the process if processing shall be done in the background */
     if (must_daemonize) {
         pid_t its_process, its_signature;
@@ -197,6 +197,6 @@ int main(int argc, char** argv) {
             return EXIT_FAILURE;
         }
     }
-
+#endif
     return routingmanagerd_process(is_quiet);
 }
