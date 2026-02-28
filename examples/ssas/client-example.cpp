@@ -33,16 +33,26 @@ void run() {
     request->set_service(SAMPLE_SERVICE_ID);
     request->set_instance(SAMPLE_INSTANCE_ID);
     request->set_method(SAMPLE_METHOD_ID);
+    request->set_session(0x1000);
     //request->set_reliable(true);
+    std::shared_ptr< vsomeip::message > request2;
+    request2 = vsomeip::runtime::get()->create_request();
+    request2->set_service(SAMPLE_SERVICE_ID);
+    request2->set_instance(SAMPLE_INSTANCE_ID);
+    request2->set_method(0x1002);
+    //request->set_reliable(true);
+    request2->set_session(0x1000);
 
     std::shared_ptr< vsomeip::payload > its_payload = vsomeip::runtime::get()->create_payload();
     std::vector< vsomeip::byte_t > its_payload_data;
-    for (int i=0; i<5000; i++) {
+    for (int i=0; i<1000; i++) {
         its_payload_data.push_back(i % 256);
     }
     its_payload->set_data(its_payload_data);
     request->set_payload(its_payload);
+    request2->set_payload(its_payload);
     app->send(request);
+    app->send(request2);
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
   }
 }
@@ -59,7 +69,9 @@ void on_message(const std::shared_ptr<vsomeip::message> &_response) {
         << (int)*(its_payload->get_data()+i) << " ";
   }
 
-  std::cout << "CLIENT: Received message with Client/Session ["
+  std::cout << "CLIENT: Received message with Service/Method/Client/Session ["
+      << std::setw(4) << std::setfill('0') << std::hex << _response->get_service() << "/"
+      << std::setw(4) << std::setfill('0') << std::hex << _response->get_method() << "/"
       << std::setw(4) << std::setfill('0') << std::hex << _response->get_client() << "/"
       << std::setw(4) << std::setfill('0') << std::hex << _response->get_session() << "] "
       << ss.str() << std::endl;

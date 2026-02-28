@@ -10,6 +10,14 @@
     "applications" : 
     [
         {
+            "name" : "RadarServiceSkeleton",
+            "id" : "0x1341"
+        },
+        {
+            "name" : "RadarServiceProxy",
+            "id" : "0x1342"
+        },
+        {
             "name" : "hello_world_service",
             "id" : "0x1343"
         },
@@ -31,7 +39,7 @@
             "unreliable" : "30568"
         }
     ],
-    "routing" : "hello_world_client",
+    "routing" : "RadarServiceProxy",
     "service-discovery" :
     {
         "enable" : "true",
